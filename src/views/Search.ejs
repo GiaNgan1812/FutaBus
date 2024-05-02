@@ -48,15 +48,15 @@
         <div class="checkbox-section">
             <h5>Type</h5>
             <label class="checkbox-item">Normal
-                <input type="checkbox">
+                <input type="checkbox" value="Normal" class="filter-checkbox" name="type">
                 <span class="checkmark"></span>
             </label>
             <label class="checkbox-item">Sleeper bus
-                <input type="checkbox">
+                <input type="checkbox" value="Sleeper bus" class="filter-checkbox" name="type">
                 <span class="checkmark"></span>
             </label>
             <label class="checkbox-item">Limousine
-                <input type="checkbox">
+                <input type="checkbox" value="Limousine" class="filter-checkbox" name="type">
                 <span class="checkmark"></span>
             </label>
         </div>
@@ -73,7 +73,6 @@
         </div>
     </div>
 
-
     <h1>List of search results:</h1>
     <% bus.forEach(function(bus) { %>
         <div class="jumbotron jumbotron-fluid">
@@ -88,10 +87,12 @@
                 </p>
                 <p class="lead">Total time: <%= bus.Total_time %>
                 </p>
-                <p class="lead">Start time: <%= bus.Start_time %>
-                </p>
-                <p class="lead">End time: <%= bus.End_time %>
-                </p>
+                <% bus.bustimeInfo.forEach(function(bustime) { %>
+                    <p class="lead">Start time: <%= bustime.Start_time %>
+                    </p>
+                    <p class="lead">End time: <%= bustime.End_time %>
+                    </p>
+                    <% }); %>
             </div>
         </div>
         <% }); %>

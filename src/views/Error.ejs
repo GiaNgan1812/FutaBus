@@ -1,0 +1,30 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUTA</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div class="topnav">
+        <a class="active" href="/Home">Home</a>
+        <a href="/Login">Login</a>
+        <a href="/SignUp">Sign Up</a>
+        <form class="search-wrapper" action="/Search">
+            <input id="search" type="text" class="input" name="keyword1" placeholder="departure..." data-search />
+            <input id="search" type="text" class="input" name="keyword2" placeholder="destination..." data-search />
+            <button id="searchB" type="submit" class="fa fa-search" data-search>search</button>
+        </form>
+    </div>
+
+    <div style="padding-bottom:16px">
+        <h1>
+            <%= message%>
+        </h1>
+    </div>
+</body>
+
+</html>

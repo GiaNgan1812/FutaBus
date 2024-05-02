@@ -1,0 +1,110 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUTA</title>
+    <link rel="stylesheet" href="/style.css">
+    <!-- <script src="/src/Search.js" defer></script> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+</head>
+
+<body>
+    <div class="topnav">
+        <a class="active" href="/Home">Home</a>
+        <a href="/Login">Login</a>
+        <a href="/SignUp">Sign Up</a>
+        <form class="search-wrapper" action="/Search">
+            <input id="search" type="text" class="input" name="keyword1" placeholder="departure..." data-search />
+            <input id="search" type="text" class="input" name="keyword2" placeholder="destination..." data-search />
+            <button id="searchB" type="submit" class="fa fa-search" data-search>search</button>
+        </form>
+    </div>
+
+    <h1>Filter search:</h1>
+    <div class="checkbox-container">
+        <div class="checkbox-section">
+            <h5>Bus Time</h5>
+            <label class="checkbox-item">00:00 - 06:00
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-item">06:00 - 12:00
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-item">12:00 - 18:00
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-item">18:00 - 24:00
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+        <div class="checkbox-section">
+            <h5>Type</h5>
+            <label class="checkbox-item">Normal
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-item">Sleeper bus
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-item">Limousine
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+        <div class="checkbox-section">
+            <h5>Floor</h5>
+            <label class="checkbox-item">1st
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-item">2nd
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+    </div>
+
+
+    <h1>List of search results:</h1>
+    <% bus.forEach(function(bus) { %>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4"> Departure: <%= bus.Departure %> to Destination: <%= bus.Destination %>
+                </h1>
+                <p class="lead">Type: <%= bus.Type %>
+                </p>
+                <p class="lead">Distance: <%= bus.Distance %>
+                </p>
+                <p class="lead">Discription: <%= bus.Discription %>
+                </p>
+                <p class="lead">Total time: <%= bus.Total_time %>
+                </p>
+                <p class="lead">Start time: <%= bus.Start_time %>
+                </p>
+                <p class="lead">End time: <%= bus.End_time %>
+                </p>
+            </div>
+        </div>
+        <% }); %>
+
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+</body>
+
+</html>

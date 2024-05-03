@@ -8,14 +8,14 @@ let getHomepage = (req, res) => {
 let getSearchpage = async (req, res) => {
     let client;
     try {
-        console.time("QueryTime");
+
 
         client = await connectToMongoDB();
         const db = client.db();
 
         console.log(req.query.keyword1);
         console.log(req.query.keyword2);
-
+        console.time("QueryTime");
         let query = [];
         if (req.query.keyword1) {
             query.push({ Departure: { $regex: req.query.keyword1, $options: 'i' } });
@@ -53,12 +53,12 @@ let getSearchpage = async (req, res) => {
         console.error('Error when searching, please try again!!: ', err);
         res.render('Error.ejs', { message: "Error when searching, please try again!!" });
     }
-    finally {
-        // Đóng kết nối dù có lỗi xảy ra hay không
-        if (client) {
-            client.close();
-        }
-    }
+    // finally {
+    //     // Đóng kết nối dù có lỗi xảy ra hay không
+    //     if (client) {
+    //         client.close();
+    //     }
+    // }
 }
 
 

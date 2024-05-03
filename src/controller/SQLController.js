@@ -7,14 +7,14 @@ let getSQLHome = (req, res) => {
 let getSQLSearch = async (req, res) => {
     let pool;
     try {
-        console.time("QueryTime");
+
         pool = await poolPromise;
 
         console.log(req.query.keyword1);
         console.log(req.query.keyword2);
 
         const request = pool.request();
-
+        console.time("QueryTime");
         request.input('departureKeyword', sql.VarChar(255), req.query.keyword1);
         request.input('destinationKeyword', sql.VarChar(255), req.query.keyword2);
 

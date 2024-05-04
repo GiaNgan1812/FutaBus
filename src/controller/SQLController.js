@@ -1,10 +1,19 @@
-const { sql, poolPromise, closePool } = require("../configs/mssql.database");
-
+//const { sql, poolPromise, closePool } = require("../configs/mssql.database");
+const sql = require("mssql/msnodesqlv8");
 let getSQLHome = (req, res) => {
     return res.render('HomeSQL.ejs');
 }
 
 let getSQLSearch = async (req, res) => {
+    const poolPromise = new sql.ConnectionPool(require("../configs/mssql"))
+        .connect()
+        .then((pool) => {
+            console.log("Connect to MSSQL");
+            return pool;
+        })
+        .catch((err) =>
+            console.error("Database Connection failed! Bad config: ", err)
+        );
     let pool;
     try {
 
@@ -18,6 +27,7 @@ let getSQLSearch = async (req, res) => {
         request.input('departureKeyword', sql.VarChar(255), req.query.keyword1);
         request.input('destinationKeyword', sql.VarChar(255), req.query.keyword2);
 
+        console.time("QueryTime");
         const result = await request.execute('searchBuses');
 
         //console.log(result.recordset);
@@ -31,11 +41,11 @@ let getSQLSearch = async (req, res) => {
         console.error('Error when searching, please try again!!: ', err);
         res.render('Error.ejs', { message: "Error when searching, please try again!!" });
     }
-    //finally {
-    //     if (pool) {
-    //         closePool();
-    //     }
-    // }
+    finally {
+        if (pool) {
+            pool.close();
+        }
+    }
 };
 
 module.exports = {

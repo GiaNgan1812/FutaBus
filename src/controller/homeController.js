@@ -26,7 +26,7 @@ let getSearchpage = async (req, res) => {
         if (query.length === 0) {
             return res.render('Error.ejs', { message: "Please enter the keyword!" });
         }
-
+        console.time("QueryTime");
         const result = await db.collection('Bus').aggregate([
             { $match: { $or: query } }, // Lọc các bus theo điều kiện tìm kiếm
             { $unwind: "$ID_bustime" }, // Tách mỗi phần tử trong mảng ID_bustime thành một dòng riêng biệt
@@ -53,12 +53,13 @@ let getSearchpage = async (req, res) => {
         console.error('Error when searching, please try again!!: ', err);
         res.render('Error.ejs', { message: "Error when searching, please try again!!" });
     }
-    // finally {
-    //     // Đóng kết nối dù có lỗi xảy ra hay không
-    //     if (client) {
-    //         client.close();
-    //     }
-    // }
+    finally {
+        // Đóng kết nối dù có lỗi xảy ra hay không
+        if (client) {
+            console.log("Disonnect to MongoDB");
+            client.close();
+        }
+    }
 }
 
 

@@ -14,10 +14,10 @@
 
 <body>
     <div class="topnav">
-        <a class="active" href="/Home">HomeMongo</a>
+        <a class="active" href="/Home/Neo4j">HomeNeo</a>
         <a href="/Login">Login</a>
         <a href="/SignUp">Sign Up</a>
-        <form class="search-wrapper" action="/Search">
+        <form class="search-wrapper" action="/Search/Neo4j">
             <input id="search" type="text" class="input" name="keyword1" placeholder="departure..." data-search />
             <input id="search" type="text" class="input" name="keyword2" placeholder="destination..." data-search />
             <button id="searchB" type="submit" class="fa fa-search" data-search>search</button>
@@ -64,25 +64,26 @@
 
     <div class="container">
         <h1>List of search results:</h1>
-        <% bus.forEach(function(bus) { %>
+        <% buses.forEach(function(item) { %>
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
-                    <h1 class="display-4"> Departure: <%= bus.Departure %> to Destination: <%= bus.Destination %>
+                    <h1 class="display-4"> Departure: <%= item.bus.Departure %> to Destination: <%= item.bus.Destination
+                                %>
                     </h1>
-                    <p class="lead">Type: <%= bus.Type %>
+                    <p class="lead">Quantity: <%= item.bus.Quantity %>
                     </p>
-                    <p class=" lead">Distance: <%= bus.Distance %>
+                    <p class="lead">Type: <%= item.bus.Type %>
                     </p>
-                    <p class="lead">Discription: <%= bus.Discription %>
+                    <p class="lead">Distance: <%= item.bus.Distance %>
                     </p>
-                    <p class="lead">Total time: <%= bus.Total_time %>
+                    <p class="lead">Discription: <%= item.bus.Discription %>
                     </p>
-                    <% bus.bustimeInfo.forEach(function(bustime) { %>
-                        <p class="lead">Start time: <%= bustime.Start_time %>
-                        </p>
-                        <p class="lead">End time: <%= bustime.End_time %>
-                        </p>
-                        <% }); %>
+                    <p class="lead">Total Time: <%= item.bus.Total_time %>
+                    </p>
+                    <p class="lead"> Start Time: <%= item.bus_time.Start_time %>
+                    </p>
+                    <p class="lead">End Time: <%= item.bus_time.End_time %>
+                    </p>
                 </div>
             </div>
             <% }); %>

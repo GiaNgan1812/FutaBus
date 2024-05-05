@@ -8,27 +8,24 @@ let getHomepage = (req, res) => {
 let getSearchpage = async (req, res) => {
     let client;
     try {
-
-
         client = await connectToMongoDB();
         const db = client.db();
 
         console.log(req.query.keyword1);
         console.log(req.query.keyword2);
-        console.time("QueryTime");
-        let query = [];
+        let query = {};
         if (req.query.keyword1) {
-            query.push({ Departure: { $regex: req.query.keyword1, $options: 'i' } });
+            query.Departure = { $regex: req.query.keyword1, $options: 'i' };
         }
         if (req.query.keyword2) {
-            query.push({ Destination: { $regex: req.query.keyword2, $options: 'i' } });
+            query.Destination = { $regex: req.query.keyword2, $options: 'i' };
         }
-        if (query.length === 0) {
+        if (Object.keys(query).length === 0) {
             return res.render('Error.ejs', { message: "Please enter the keyword!" });
         }
         console.time("QueryTime");
         const result = await db.collection('Bus').aggregate([
-            { $match: { $or: query } }, // Lọc các bus theo điều kiện tìm kiếm
+            { $match: query }, // Lọc các bus theo điều kiện tìm kiếm
             { $unwind: "$ID_bustime" }, // Tách mỗi phần tử trong mảng ID_bustime thành một dòng riêng biệt
             {
                 $lookup: {
@@ -42,7 +39,7 @@ let getSearchpage = async (req, res) => {
 
         console.timeEnd("QueryTime");
 
-        //console.log(result);
+        console.log(result);
         if (result.length > 0) {
             res.render('Search.ejs', { bus: result });
         } else {
@@ -65,5 +62,5 @@ let getSearchpage = async (req, res) => {
 
 module.exports = {
     getHomepage,
-    getSearchpage
+    getSearchpage,
 }

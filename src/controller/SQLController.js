@@ -23,13 +23,25 @@ let getSQLSearch = async (req, res) => {
         console.log(req.query.keyword2);
 
         const request = pool.request();
+        const request1 = pool.request();
+        const request2 = pool.request();
+
         console.time("QueryTime");
         request.input('departureKeyword', sql.VarChar(255), req.query.keyword1);
         request.input('destinationKeyword', sql.VarChar(255), req.query.keyword2);
+        request1.input('departureKeyword', sql.VarChar(255), req.query.keyword1);
+        request2.input('destinationKeyword', sql.VarChar(255), req.query.keyword2);
 
-        console.time("QueryTime");
-        const result = await request.execute('searchBuses');
-
+        let result;
+        if (req.query.keyword1 && req.query.keyword2) {
+            result = await request.execute('searchBuses');
+        }
+        if (req.query.keyword1) {
+            result = await request1.execute('searchBuses1');
+        }
+        if (req.query.keyword2) {
+            result = await request2.execute('searchBuses2');
+        }
         //console.log(result.recordset);
         console.timeEnd("QueryTime");
         if (result.recordset.length > 0) {

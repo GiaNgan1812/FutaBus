@@ -15,6 +15,7 @@ function initWebRoute(app) {
 
     router.get('/Home/Neo4j', Neo4jController.getHomeNeo4j);
     router.get('/Search/Neo4j', Neo4jController.getSearchNeo4j);
+
     return app.use('/', router)
 }
 module.exports = initWebRoute

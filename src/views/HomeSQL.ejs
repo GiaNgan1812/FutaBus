@@ -15,17 +15,67 @@
         <a class="active" href="/Home/SQL">HomeSQL</a>
         <a href="/Login">Login</a>
         <a href="/SignUp">Sign Up</a>
-        <a href="/Home">NoSQL</a>
+        <a href="/Home">Mongo</a>
+        <a href="/Home/Neo4j">Neo4j</a>
         <form class="search-wrapper" action="/Search/SQL">
             <input id="search" type="text" class="input" name="keyword1" placeholder="departure..." data-search />
             <input id="search" type="text" class="input" name="keyword2" placeholder="destination..." data-search />
             <button id="searchB" type="submit" class="fa fa-search" data-search>search</button>
         </form>
     </div>
-    <br>
-    <div class="Head">
-        <h2>BUSES</h2>
+    <div class="image">
+        <img src="/img1.png" />
     </div>
+    <br>
+
+    <div class="container">
+        <div class="Head">
+            <h2>Popular Buses</h2>
+        </div>
+        <div class="card-group">
+            <div class="card">
+                <img class="card-img-top" src="/TPHCM.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">TPHCM</h5>
+                    <p class="card-text">The city is famous for its vibrant lifestyle, and attractions
+                        such as Reunification Palace, and Ben Thanh Market...</p>
+                    <a href="/Search/SQL?keyword1=TPHCM">
+                        <button id="searchB" type="submit" class="fa fa-search"> Find Bus
+                        </button>
+                    </a>
+                    <p class="card-text"><small class="text-muted">Last updated 15 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="/BinhPhuoc.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Binh Phuoc</h5>
+                    <p class="card-text">It is known for its majestic natural landscapes such as Ba Be Lake, Ba Den
+                        Mountain, Suoi Tien, and Suoi Da Bia...</p>
+                    <a href="/Search/SQL?keyword1=Binh+Phuoc">
+                        <button id="searchB" type="submit" class="fa fa-search">Find Bus
+                        </button>
+                    </a>
+                    <p class="card-text"><small class="text-muted">Last updated 5 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="/VungTau.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Vung Tau</h5>
+                    <p class="card-text">The city has attractions such as the Christ the King statue, Hon Ba Island,
+                        Hai
+                        Dang Hill, and Front Beach...</p>
+                    <a href="/Search/SQL?keyword1=Vung+Tau">
+                        <button id="searchB" type="submit" class="fa fa-search">Find Bus
+                        </button>
+                    </a>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

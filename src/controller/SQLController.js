@@ -1,5 +1,6 @@
 //const { sql, poolPromise, closePool } = require("../configs/mssql.database");
 const sql = require("mssql/msnodesqlv8");
+
 let getSQLHome = (req, res) => {
     return res.render('HomeSQL.ejs');
 }

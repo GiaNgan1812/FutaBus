@@ -5,7 +5,7 @@ const Neo4jController = require('../controller/Neo4jController');
 const router = express.Router();
 
 function initWebRoute(app) {
-    router.get('/', homeController.getHomepage);
+    router.get('/', Neo4jController.getHomeNeo4j);
 
     router.get('/Home', homeController.getHomepage);
     router.get('/Search', homeController.getSearchpage);
@@ -15,6 +15,7 @@ function initWebRoute(app) {
 
     router.get('/Home/Neo4j', Neo4jController.getHomeNeo4j);
     router.get('/Search/Neo4j', Neo4jController.getSearchNeo4j);
+    router.get('/searchDetail', Neo4jController.getDetailNeo4j);
 
     return app.use('/', router)
 }

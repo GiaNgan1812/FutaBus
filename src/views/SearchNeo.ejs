@@ -20,6 +20,7 @@
         <form class="search-wrapper" action="/Search/Neo4j">
             <input id="search" type="text" class="input" name="keyword1" placeholder="departure..." data-search />
             <input id="search" type="text" class="input" name="keyword2" placeholder="destination..." data-search />
+            <input id="search" type="text" class="input" name="keyword3" placeholder="DD/MM/YYYY..." data-search />
             <button id="searchB" type="submit" class="fa fa-search" data-search>search</button>
         </form>
     </div>
@@ -67,27 +68,20 @@
         <% buses.forEach(function(item) { %>
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
-                    <h1 class="display-4"> Departure: <%= item.bus.Departure %> to Destination: <%= item.bus.Destination
+                    <h1 class="display-4"> Departure: <%= item.bus.departure %> to Destination: <%= item.bus.destination
                                 %>
                     </h1>
-                    <p class="lead">Quantity: <%= item.bus.Quantity %>
+                    <p class="lead">Type: <%= item.bus.type %>
                     </p>
-                    <p class="lead">Type: <%= item.bus.Type %>
+                    <p class="lead"> Departure day: <%= item.schedule.departure_date %>
                     </p>
-                    <p class="lead">Distance: <%= item.bus.Distance %>
+                    <p class="lead"> Departure time: <%= item.schedule.departure_time %>
                     </p>
-                    <p class="lead">Discription: <%= item.bus.Discription %>
+                    <p class="lead"> Price: <%= item.bus.price %>
                     </p>
-                    <p class="lead">Total Time: <%= item.bus.Total_time %>
-                    </p>
-                    <p class="lead"> Start Time: <%= item.bus_time.Start_time %>
-                    </p>
-                    <p class="lead">End Time: <%= item.bus_time.End_time %>
-                    </p>
-                    <p class="lead">Start Day: <%= item.bus_time.Departure %>
-                    </p>
-                    <p class="lead">End Day: <%= item.bus_time.Destination %>
-                    </p>
+                    <a class="lead" href="/searchDetail?IDBus=<%= item.bus.IDBus %>">
+                        <button id="searchB" type="submit" class="fa fa-search">Detail</button>
+                    </a>
                 </div>
             </div>
             <% }); %>
